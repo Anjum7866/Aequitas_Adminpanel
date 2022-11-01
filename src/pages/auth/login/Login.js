@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from "../Auth";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -54,15 +55,33 @@ const Login = () => {
       return true;
     }
   };
+  // const onSubmit = () => {
+  //   const data = {
+  //     user_email: email,
+  //     password: password,
+  //   };
+  //   if (onValidate) {
+  //     localStorage.setItem("luckyNumber_User", JSON.stringify(data));
+  //     navigate("/dashboard");
+  //   }
+  // };
   const onSubmit = () => {
-    const data = {
-      user_email: email,
-      password: password,
-    };
-    if (onValidate) {
-      localStorage.setItem("luckyNumber_User", JSON.stringify(data));
-      navigate("/dashboard");
-    }
+    axios
+      .post(`http://localhost:3000/admin/login`, {
+        email, password
+      })
+      .then(function (data) {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          navigate("/dashboard");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log("error",error.response.data.message);
+        setSnackBar(true);
+      });
   };
   return (
     <Auth

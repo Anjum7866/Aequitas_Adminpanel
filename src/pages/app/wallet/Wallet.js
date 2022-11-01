@@ -20,14 +20,14 @@ const Wallet = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const onClickAddNew = () => {
-    setEditWalletAmount({ isEditing: false, editItem: null });
-    onDiscard();
-    setCurrentScreen(1);
-    console.log("edit user from onclicknew", editWalletAmount);
-  };
+  // const onClickAddNew = () => {
+  //   setEditWalletAmount({ isEditing: false, editItem: null });
+  //   onDiscard();
+  //   setCurrentScreen(1);
+  //   console.log("edit user from onclicknew", editWalletAmount);
+  // };
   const onClickBack = () => {
-    onDiscard();
+    // onDiscard();
     setCurrentScreen(0);
   };
   const onChangeWalletAmount = (e) => {
@@ -49,9 +49,9 @@ const Wallet = () => {
        {currentScreen === 1 && (
         <WalletForm 
           onClickBack={onClickBack}
-          onSubmit={onSubmit}
-          onUpdate={onUpdate}
-          onDiscard={onDiscard}
+          // onSubmit={onSubmit}
+          // onUpdate={onUpdate}
+          // onDiscard={onDiscard}
           onChangeWalletAmount={onChangeWalletAmount}
           onChangeWalletDetails={onChangeWalletDetails}
           walletAmount={walletAmount}

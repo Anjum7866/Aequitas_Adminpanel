@@ -27,7 +27,7 @@ const GameScreen = ({
     setEditGame,
     setCurrentScreen,
     onClickDeleteBtn,
-    userState,
+    
 }) => {
  
   return (
@@ -37,7 +37,7 @@ const GameScreen = ({
         <Typography color="#212121" variant="h6" mr={2}>
           Game Details
         </Typography>
-        <Button color="primary" variant="contained" startIcon={<AddIcon />} >
+        <Button color="primary" variant="contained" startIcon={<AddIcon />} onClick={onClickAddGameBtn} >
           Add Game Details
         </Button>
       </Box>
@@ -79,7 +79,6 @@ const GameScreen = ({
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={userState.usersList.users.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

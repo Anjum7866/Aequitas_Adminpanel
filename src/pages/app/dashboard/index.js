@@ -3,14 +3,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addGame } from "../../../api/api";
-import { getAllUsers } from "../../../redux/actions/user.action";
+import { getAllGames } from "../../../redux/actions/game.action";
 import GameForm from "./GameForm";
 import GameScreen from "./GameScreen";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user);
+  const gameState = useSelector((state) => state.game);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentScreen, setCurrentScreen] = useState(0);
@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [min, setMin] = useState("");
   const [sec, setSec] = useState("");
   const [value, setValue] = useState("");
-  const [editUser, setEditGame] = useState({
+  const [editGame, setEditGame] = useState({
     isEditing: false,
     editItem: null,
   });
@@ -47,35 +47,36 @@ const Dashboard = () => {
     setPage(0);
   };
   useEffect(() => {
-    dispatch(getAllUsers());
-    //console.log('users', state.users)
+    dispatch(getAllGames());
+    //console.log('games', state.games)
   }, [dispatch]);
 
   const onClickAddNew = () => {
+    console.log("add button clicked ")
     setEditGame({ isEditing: false, editItem: null });
     onDiscard();
     setCurrentScreen(1);
-    console.log("edit game from onclicknew", editUser);
+    console.log("edit game from onclicknew", editGame);
   };
   const onClickBack = () => {
     onDiscard();
     setCurrentScreen(0);
   };
-  const onClickViewBtn = (editUserData) => {
-    setEditGame({ isEditing: false, editItem: editUserData });
-    navigate(`/users/${editUserData.user_id}`);
+  const onClickViewBtn = (editGameData) => {
+    setEditGame({ isEditing: false, editItem: editGameData });
+    navigate(`/games/${editGameData.game_id}`);
   };
-  const onClickEditBtn = (editUserData) => {
-    setEditGame({ isEditing: true, editItem: editUserData });
+  const onClickEditBtn = (editGameData) => {
+    setEditGame({ isEditing: true, editItem: editGameData });
     setCurrentScreen(1);
   };
   const onClickDeleteBtn = (id) => {
     
   };
-  const onOpenEditUser = useCallback((item) => {
-    setMin(item.user_name);
-    setSec(item.user_email);
-    setValue(item.user_number);
+  const onOpenEditGame = useCallback((item) => {
+    setMin(item.game_name);
+    setSec(item.game_email);
+    setValue(item.game_number);
   }, []);
 
   const onDiscard = () => {
@@ -126,7 +127,7 @@ const Dashboard = () => {
             severity: "success",
             message: "Game Data added successfully",
           });
-          dispatch(getAllUsers());
+          dispatch(getAllGames());
           setTimeout(() => onClickBack(), 1000);
         }
       } catch (error) {
@@ -154,13 +155,13 @@ const Dashboard = () => {
           handleChangePage={handleChangePage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
           onClickEditBtn={onClickEditBtn}
-          onClickAddUserBtn={onClickAddNew}
-          editUser={editUser}
+          onClickAddGameBtn={onClickAddNew}
+          editGame={editGame}
           setEditGame={setEditGame}
           setCurrentScreen={setCurrentScreen}
           onClickViewBtn={onClickViewBtn}
           onClickDeleteBtn={onClickDeleteBtn}
-          userState={userState}
+          gameState={gameState}
         />
       )}
       {currentScreen === 1 && (
@@ -172,11 +173,11 @@ const Dashboard = () => {
           onChangeMin={onChangeMin}
           onChangeSec={onChangeSec}
           onChangeValue={onChangeValue}
-          onOpenEditUser={onOpenEditUser}
+          onOpenEditGame={onOpenEditGame}
           min={min}
           sec={sec}
           value={value}
-          editUser={editUser}
+          editGame={editGame}
           loading={loading}
         />
       )}

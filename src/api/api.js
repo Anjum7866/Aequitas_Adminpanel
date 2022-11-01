@@ -18,6 +18,14 @@ const addUser = (payload) => {
     console.log('error adding user', error)
   }
 }
+const addGame = (payload) => {
+  try {
+    const res = AxiosWithToken.post(`${API_URL}/game`, payload)
+    return res
+  } catch (error) {
+    console.log('error adding game', error)
+  }
+}
 
 const updateUser = (userId, payload) => {
   const res = AxiosWithToken.patch(`${API_URL}/users/${userId}`, payload)
@@ -28,4 +36,4 @@ const deleteUser = (userId) => {
   return res
 }
 
-export { getUserList, getUserById, addUser, updateUser, deleteUser }
+export { getUserList, getUserById, addUser,addGame, updateUser, deleteUser }

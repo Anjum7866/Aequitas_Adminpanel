@@ -55,34 +55,34 @@ const Login = () => {
       return true;
     }
   };
-  // const onSubmit = () => {
-  //   const data = {
-  //     user_email: email,
-  //     password: password,
-  //   };
-  //   if (onValidate) {
-  //     localStorage.setItem("luckyNumber_User", JSON.stringify(data));
-  //     navigate("/dashboard");
-  //   }
-  // };
   const onSubmit = () => {
-    axios
-      .post(`http://localhost:3000/admin/login`, {
-        email, password
-      })
-      .then(function (data) {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          navigate("/dashboard");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.log("error",error.response.data.message);
-        setSnackBar(true);
-      });
+    const data = {
+      user_email: email,
+      password: password,
+    };
+    if (onValidate) {
+      localStorage.setItem("luckyNumber_User", JSON.stringify(data));
+      navigate("/dashboard");
+    }
   };
+  // const onSubmit = () => {
+  //   axios
+  //     .post(`http://localhost:3000/admin/login`, {
+  //       email, password
+  //     })
+  //     .then(function (data) {
+  //       if (data.error) {
+  //         console.log(data.error);
+  //       } else {
+  //         navigate("/dashboard");
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       console.log("error",error.response.data.message);
+  //       setSnackBar(true);
+  //     });
+  // };
   return (
     <Auth
       email={email}

@@ -11,64 +11,27 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    TablePagination,
     Typography,
  } from "@mui/material";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 
-
-const GameDashboard = ({
-  page,
-  rowsPerPage,
-  handleChangePage,
-  handleChangeRowsPerPage,
+const GameScreen = ({
+    page,
+    rowsPerPage,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    onClickAddGameBtn,
+    editGame,
+    setEditGame,
+    setCurrentScreen,
+    onClickDeleteBtn,
+    userState,
 }) => {
  
   return (
     <Card variant="outlined">
-      {/* <CardContent>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ background: "#2eb85c" }}>
-              <CardContent>
-                <Typography color='#fff' variant="h5">1000</Typography>
-                <Typography color='#fff' my={1} variant="body1">Total Players</Typography>
-                <Typography color='#fff' my={1} variant="body1">Last 365 Days</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ background: "#39f" }}>
-              <CardContent>
-                <Typography color='#fff' variant="h5">1000</Typography>
-                <Typography color='#fff' my={1} variant="body1">Total Players</Typography>
-               
-                <Typography color='#fff' my={1} variant="body1">Last 365 Days</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ background: "#ffc107" }}>
-              <CardContent>
-                <Typography color='#fff' variant="h5">1000</Typography>
-                <Typography color='#fff' my={1} variant="body1">Total Players</Typography>
-               
-                <Typography color='#fff' my={1} variant="body1">Last 365 Days</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ background: "#321fdb" }}>
-              <CardContent>
-                <Typography color='#fff' variant="h5">1000</Typography>
-                <Typography color='#fff' my={1} variant="body1">Total Players</Typography>
-               
-                <Typography color='#fff' my={1} variant="body1">Last 365 Days</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </CardContent> */}
       <CardContent>
       <Box p={2} display="flex" alignItems="center">
         <Typography color="#212121" variant="h6" mr={2}>
@@ -112,7 +75,16 @@ const GameDashboard = ({
                 </TableBody>
               </Table>
             </TableContainer>
-           
+            <Divider/>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={userState.usersList.users.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
           </Paper>
         </CardContent>
       
@@ -120,4 +92,4 @@ const GameDashboard = ({
   );
 };
 
-export default GameDashboard;
+export default GameScreen;

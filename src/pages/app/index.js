@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import DashboardLayout from "../../layout/DashboardLayout";
 import Bingocard from "./bingocard/Bingocard";
-import Dashboard from "./dashboard/Dashboard";
 import Game from "./game/Game";
+import Dashboard from "./dashboard";
 import Player from "./player";
 import User from "./user";
 import ViewUser from "./user/ViewUser";

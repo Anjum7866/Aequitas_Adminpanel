@@ -3,6 +3,8 @@ import DashboardLayout from "../../layout/DashboardLayout";
 import Bingocard from "./bingocard/Bingocard";
 import Game from "./game/Game";
 import Dashboard from "./dashboard";
+import Menu from "./menu";
+import Statistics from "./statistics"
 import Player from "./player";
 import User from "./user";
 import ViewUser from "./user/ViewUser";
@@ -17,7 +19,7 @@ export default function AppScreen(){
     <DashboardLayout>
       <Routes>
         <Route path="/" element={<Navigate to='dashboard' replace/>}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        {/* <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/users" element={<User />}></Route>
         <Route path='/users/:userId' element={<ViewUser />}></Route>
         <Route path="/players" element={<Player />}></Route>
@@ -26,7 +28,9 @@ export default function AppScreen(){
         <Route path="/item" element={<Item />}></Route>
         <Route path="/question" element={<Question />}></Route>
         <Route path="/wallet" element={<Wallet />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/profile" element={<Profile />}></Route> */}
+        <Route path="/menu" element={<Menu />}></Route>
+        <Route path="/statistics" element={<Statistics />}></Route>
         {/* <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route> */}
       </Routes>
